@@ -36,18 +36,17 @@
 
       <article class="card">
         <h2>Komponenten herunterladen</h2>
-        <p>Die originalen React-Komponenten aus diesem Repository. Für die zentrale Einbindung werden sie nicht benötigt.</p>
+        <p>Die originalen React-Komponenten und die eigenständigen Browser-Dateien. Für den Remote-Einbau werden die JavaScript-Dateien geladen.</p>
         <div class="downloads">
-          <a class="btn primary" download="KdsBanner.jsx" href="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/KdsBanner.jsx">Banner</a>
-          <a class="btn primary" download="KdsPopup.jsx" href="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/KdsPopup.jsx">Popup</a>
+          <a class="btn primary" download="KdsBanner.js" href="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/KdsBanner.js">Banner JS</a>
+          <a class="btn primary" download="KdsPopup.js" href="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/KdsPopup.js">Popup JS</a>
           <a class="btn" download href="https://github.com/LordLOLQDH/KDS-banner/archive/refs/heads/main.zip">Beide (ZIP)</a>
         </div>
-        <div class="note">„Beide (ZIP)“ lädt das komplette Repository herunter. Die zentrale Einbindung funktioniert unabhängig von React.</div>
       </article>
     </section>
 
     <section>
-      <div class="section-title"><h2>Zentrale Einbindung</h2><p>Dieser Code lädt das KDS-System direkt aus dem GitHub-Repository.</p></div>
+      <div class="section-title"><h2>Zentrale Einbindung</h2><p>Ein Link auf der Kunden-Website lädt den Loader; dieser lädt Banner und Popup direkt aus GitHub.</p></div>
       <div class="code-card">
         <div class="code-head">
           <div class="code-label">Beispiel: HTML</div>
@@ -56,15 +55,15 @@
         <div class="code-wrap"><pre class="code" id="install-code">&lt;script src="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/kds-embed.js" defer&gt;&lt;/script&gt;</pre></div>
       </div>
       <div class="steps">
-        <div class="step"><strong>01 — Code</strong><span>Diesen einen Script-Tag in deine Website einfügen, am besten kurz vor <code>&lt;/body&gt;</code>.</span></div>
-        <div class="step"><strong>02 — Zentrale Quelle</strong><span>Das Script lädt die aktuelle KDS-Konfiguration aus <code>kds-config.json</code> im GitHub-Repository.</span></div>
-        <div class="step"><strong>03 — Updates</strong><span>Änderungen an der zentralen KDS-Konfiguration können dadurch bei den eingebundenen Websites übernommen werden.</span></div>
+        <div class="step"><strong>01 — Ein Link</strong><span>Diesen einen Script-Tag in die Kunden-Website einfügen, am besten kurz vor <code>&lt;/body&gt;</code>.</span></div>
+        <div class="step"><strong>02 — GitHub lädt 2 Dateien</strong><span><code>kds-embed.js</code> lädt <code>KdsBanner.js</code> und <code>KdsPopup.js</code> direkt über ihre Raw-GitHub-Links.</span></div>
+        <div class="step"><strong>03 — Kein Base44</strong><span>Die Banner-/Popup-Auslieferung verwendet keinen Base44-Endpoint und keine React-Installation auf der Kunden-Website.</span></div>
       </div>
-      <div class="note">Für die zentrale Einbindung brauchst du auf der Kunden-Website weder React noch Tailwind CSS. Der Loader und die Konfiguration kommen aus dem KDS-Repository.</div>
+      <div class="note">Die beiden Browser-Dateien sind eigenständig und werden nicht in die Kunden-Website kopiert. Die Website lädt sie bei jedem Aufruf über GitHub.</div>
     </section>
 
     <section>
-      <div class="section-title"><h2>Was ist enthalten?</h2><p>Aktuelle Versionen des KDS-Systems</p></div>
+      <div class="section-title"><h2>Originale React-Komponenten</h2><p>Für React-Projekte bleiben die vorhandenen JSX-Dateien erhalten.</p></div>
       <div class="grid">
         <article class="card"><h2><span class="orange">01</span> KdsBanner.jsx</h2><p>Die originale React-Komponente des KDS-Banners.</p><a class="btn" href="KdsBanner.jsx" target="_blank">Datei ansehen →</a></article>
         <article class="card"><h2><span class="orange">02</span> KdsPopup.jsx</h2><p>Die originale React-Komponente des KDS-Popups.</p><a class="btn" href="KdsPopup.jsx" target="_blank">Datei ansehen →</a></article>
