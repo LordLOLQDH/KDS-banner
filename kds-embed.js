@@ -20,7 +20,7 @@
     },
     popup: {
       enabled: true,
-      delayMs: 1500,
+      delayMs: 8000,
       oncePerSession: false,
       eyebrow: "DIGITAL INSIGHTS",
       badge: "TESTKUNDEN-RABATT",
