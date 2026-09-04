@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "enabled": true,
+  "banner": {
+    "enabled": true,
+    "title": "Diese Website wurde von Kraus Digital Solutions gemacht",
+    "description": "Du willst auch eine eigene Website? Für unsere ersten Testkunden gibt es einen starken Rabatt – im Gegenzug für eine ehrliche Bewertung. Begrenzte Plätze.",
+    "eyebrow": "DIGITAL INSIGHTS",
+    "badge": "TESTKUNDEN-RABATT",
+    "cta": "Testkunden-Rabatt sichern →",
+    "ctaUrl": "https://kraus-digital-solutions.base44.app/kontakt",
+    "services": [
+      ["01 — Neue Websites", "Von null auf online – modern, schnell & conversion-orientiert."],
+      ["02 — Redesign", "Alt wird neu. Wir ersetzen veraltete Websites durch moderne, die funktionieren."],
+      ["03 — Optimierung", "Schneller, besser, mehr Kunden – systematisch verbessert."]
+    ],
+    "footerName": "Adam Gabriel Kraus",
+    "footerCompany": "Kraus Digital Solutions"
+  },
+  "popup": {
+    "enabled": true,
+    "delayMs": 8000,
+    "oncePerSession": true,
+    "title": "Du brauchst auch eine Website?",
+    "description": "Diese Website wurde von Kraus Digital Solutions gemacht. Für unsere ersten Testkunden gibt es einen starken Rabatt – im Gegenzug für eine ehrliche Bewertung. Begrenzte Plätze.",
+    "eyebrow": "DIGITAL INSIGHTS",
+    "badge": "TESTKUNDEN-RABATT",
+    "cta": "Testkunden-Rabatt sichern →",
+    "ctaUrl": "https://kraus-digital-solutions.base44.app/kontakt"
+  }
+}
