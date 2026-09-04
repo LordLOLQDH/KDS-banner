@@ -1,31 +1,52 @@
 /*
- * KDS Central Embed
+ * KDS Remote Embed
  *
- * Add this script to a customer website:
+ * Kunden-Website braucht nur diesen einen Link:
  * <script src="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/kds-embed.js" defer></script>
  *
- * The script fetches kds-config.json from this repository. Changes to the
- * central configuration are therefore picked up by customer websites without
- * replacing their local banner/popup code.
+ * Dieser Loader greift NICHT auf Base44 zu.
+ * Er lädt Banner und Popup als zwei separate Dateien direkt aus diesem GitHub-Repository.
  */
 (function () {
   "use strict";
 
-  var BASE = "https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/";
-  var CONFIG_URL = BASE + "kds-config.json";
-  var SESSION_KEY = "kds_popup_seen";
   var ROOT_ID = "kds-central-root";
+  var BASE = "https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/";
+  var BANNER_URL = BASE + "KdsBanner.js";
+  var POPUP_URL = BASE + "KdsPopup.js";
+  var SESSION_KEY = "kds_popup_seen";
 
-  function escapeHtml(value) {
-    return String(value == null ? "" : value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
+  var config = {
+    banner: {
+      enabled: true,
+      eyebrow: "DIGITAL INSIGHTS",
+      badge: "TESTKUNDEN-RABATT",
+      title: "Diese Website wurde von Kraus Digital Solutions gemacht",
+      description: "Du willst auch eine eigene Website? Für unsere ersten Testkunden gibt es einen starken Rabatt – im Gegenzug für eine ehrliche Bewertung. Begrenzte Plätze.",
+      cta: "Testkunden-Rabatt sichern →",
+      ctaUrl: "https://kraus-digital-solutions.base44.app/kontakt",
+      services: [
+        ["01 — Neue Websites", "Von null auf online – modern, schnell & conversion-orientiert."],
+        ["02 — Redesign", "Alt wird neu. Wir ersetzen veraltete Websites durch moderne, die funktionieren."],
+        ["03 — Optimierung", "Schneller, besser, mehr Kunden – systematisch verbessert."]
+      ],
+      footerName: "Adam Gabriel Kraus",
+      footerCompany: "Kraus Digital Solutions"
+    },
+    popup: {
+      enabled: true,
+      delayMs: 8000,
+      oncePerSession: true,
+      eyebrow: "DIGITAL INSIGHTS",
+      badge: "TESTKUNDEN-RABATT",
+      title: "Du brauchst auch eine Website?",
+      description: "Diese Website wurde von Kraus Digital Solutions gemacht. Für unsere ersten Testkunden gibt es einen starken Rabatt – im Gegenzug für eine ehrliche Bewertung. Begrenzte Plätze.",
+      cta: "Testkunden-Rabatt sichern →",
+      ctaUrl: "https://kraus-digital-solutions.base44.app/kontakt"
+    }
+  };
 
-  function injectStyles() {
+  function addStyles() {
     if (document.getElementById("kds-central-styles")) return;
     var style = document.createElement("style");
     style.id = "kds-central-styles";
@@ -39,100 +60,49 @@
     document.head.appendChild(style);
   }
 
-  function getRoot() {
-    var root = document.getElementById(ROOT_ID);
-    if (!root) {
-      root = document.createElement("div");
-      root.id = ROOT_ID;
-      document.body.appendChild(root);
+  function root() {
+    var el = document.getElementById(ROOT_ID);
+    if (!el) {
+      el = document.createElement("div");
+      el.id = ROOT_ID;
+      document.body.appendChild(el);
     }
-    return root;
+    return el;
   }
 
-  function renderBanner(root, config) {
-    if (!config.enabled || !config.banner || !config.banner.enabled) return;
-    var b = config.banner;
-    var services = (b.services || []).map(function (item) {
-      return '<div class="kds-service"><strong>' + escapeHtml(item[0]) + '</strong><p>' + escapeHtml(item[1]) + '</p></div>';
-    }).join("");
-    root.insertAdjacentHTML("beforeend",
-      '<section class="kds-central-banner" data-kds="banner">' +
-        '<div class="kds-central-card">' +
-          '<div class="kds-topline"></div>' +
-          '<div class="kds-head"><div class="kds-brand">Kraus <span class="kds-orange">Digital Solutions</span></div><div class="kds-eyebrow">' + escapeHtml(b.eyebrow) + '</div></div>' +
-          '<div class="kds-body"><div class="kds-badge">' + escapeHtml(b.badge) + '</div><h2 class="kds-title">' + escapeHtml(b.title) + '</h2><p class="kds-copy">' + escapeHtml(b.description) + '</p></div>' +
-          '<div class="kds-services">' + services + '</div>' +
-          '<div class="kds-cta-wrap"><a class="kds-cta" href="' + escapeHtml(b.ctaUrl) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(b.cta) + '</a></div>' +
-          '<div class="kds-footer"><strong>' + escapeHtml(b.footerName) + '</strong><div class="kds-footer-company">' + escapeHtml(b.footerCompany) + '</div></div>' +
-          '<div class="kds-bottomline"></div>' +
-        '</div>' +
-      '</section>'
-    );
+  function loadScript(url) {
+    return new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = url;
+      s.onload = resolve;
+      s.onerror = function () { reject(new Error("KDS-Datei konnte nicht geladen werden: " + url)); };
+      document.head.appendChild(s);
+    });
   }
 
-  function renderPopup(root, config) {
-    if (!config.enabled || !config.popup || !config.popup.enabled) return;
-    var p = config.popup;
-    var seen = false;
-    try { seen = sessionStorage.getItem(SESSION_KEY) === "1"; } catch (_) {}
-    if (p.oncePerSession && seen) return;
-
-    var popup = document.createElement("div");
-    popup.className = "kds-popup kds-hidden";
-    popup.setAttribute("data-kds", "popup");
-    popup.innerHTML =
-      '<div class="kds-popup-backdrop"></div>' +
-      '<div class="kds-popup-card" role="dialog" aria-modal="true" aria-label="KDS Hinweis">' +
-        '<div class="kds-topline"></div>' +
-        '<button class="kds-popup-close" type="button" aria-label="Schließen">×</button>' +
-        '<div class="kds-popup-content"><div class="kds-popup-brand">Kraus <span class="kds-orange">Digital Solutions</span></div><div class="kds-popup-eyebrow">' + escapeHtml(p.eyebrow) + '</div><div class="kds-popup-badge">' + escapeHtml(p.badge) + '</div><h2 class="kds-popup-title">' + escapeHtml(p.title) + '</h2><p class="kds-popup-copy">' + escapeHtml(p.description) + '</p></div>' +
-        '<div class="kds-popup-actions"><a class="kds-cta" href="' + escapeHtml(p.ctaUrl) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(p.cta) + '</a><button class="kds-popup-no" type="button">Nein danke</button></div>' +
-        '<div class="kds-bottomline"></div>' +
-      '</div>';
-
-    function close() {
-      popup.remove();
-      if (p.oncePerSession) {
-        try { sessionStorage.setItem(SESSION_KEY, "1"); } catch (_) {}
-      }
-    }
-
-    popup.querySelector(".kds-popup-close").addEventListener("click", close);
-    popup.querySelector(".kds-popup-no").addEventListener("click", close);
-    popup.querySelector(".kds-popup-backdrop").addEventListener("click", close);
-    root.appendChild(popup);
-
-    setTimeout(function () {
-      popup.classList.remove("kds-hidden");
-      if (p.oncePerSession) {
-        try { sessionStorage.setItem(SESSION_KEY, "1"); } catch (_) {}
-      }
-    }, Math.max(0, Number(p.delayMs) || 8000));
-  }
-
-  function start(config) {
-    injectStyles();
-    var root = getRoot();
-    root.innerHTML = "";
-    renderBanner(root, config);
-    renderPopup(root, config);
+  function start() {
+    addStyles();
+    var target = root();
+    target.innerHTML = "";
+    if (window.KdsBanner) window.KdsBanner(target, config.banner);
+    if (window.KdsPopup) window.KdsPopup(target, config.popup);
   }
 
   function load() {
-    fetch(CONFIG_URL, { cache: "no-store" })
-      .then(function (response) {
-        if (!response.ok) throw new Error("KDS config HTTP " + response.status);
-        return response.json();
-      })
+    Promise.all([loadScript(BANNER_URL), loadScript(POPUP_URL)])
       .then(start)
       .catch(function (error) {
-        console.warn("KDS Integration konnte nicht geladen werden:", error);
+        console.warn("KDS Remote Embed konnte nicht geladen werden:", error);
       });
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", load);
-  } else {
-    load();
+  function ready() {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", load);
+    } else {
+      load();
+    }
   }
+
+  ready();
 })();
