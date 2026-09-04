@@ -3,7 +3,7 @@
   "use strict";
   var ROOT_ID = "kds-central-root";
   var BANNER_URL = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@5a586f39156acb327610dc0d314684516b7ccdc8/KdsBanner.js";
-  var POPUP_URL = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@042cb097731d5205955eaecf3053a1e846e588fe/KdsPopup.js";
+  var POPUP_URL = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@4e53a7f3674b39594d6b88f6dd94f2cd5925d08d/KdsPopup.js";
   var config = {
     banner: {
       enabled: true,
@@ -19,7 +19,7 @@
     },
     popup: {
       enabled: true,
-      delayMs: 3500,
+      delayMs: 5000,
       oncePerSession: false,
       eyebrow: "DIGITAL INSIGHTS",
       badge: "ANGEBOT FÜR TESTKUNDEN",
