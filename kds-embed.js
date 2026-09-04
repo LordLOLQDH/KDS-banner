@@ -3,9 +3,9 @@
   "use strict";
 
   var ROOT_ID = "kds-central-root";
-  var VERSION = "emoji-test-2";
-  var BANNER_URL = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/KdsBanner.js?" + VERSION;
-  var POPUP_URL = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/KdsPopup.js?" + VERSION;
+  var VERSION = "emoji-test-3";
+  var BANNER_URL = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@b4160f1743bd07f3022547ed48b7bac751628ae6/KdsBanner.js?" + VERSION;
+  var POPUP_URL = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@061d175cc38a98a9bf0006cdb5bc0952807d2448/KdsPopup.js?" + VERSION;
 
   var config = {
     banner: {
@@ -71,7 +71,6 @@
     var children = Array.prototype.filter.call(container.children, function (el) {
       return el.id !== ROOT_ID && !el.hasAttribute("data-kds-ignore-position");
     });
-
     if (children.length >= 2) container.insertBefore(target, children[1]);
     else container.appendChild(target);
   }
@@ -81,11 +80,7 @@
     var target = getTarget();
     target.innerHTML = "";
     placeBanner(target);
-    if (window.KdsBanner) {
-      window.KdsBanner(target, config.banner);
-    } else {
-      console.warn("KDS Banner: KdsBanner.js wurde geladen, aber window.KdsBanner fehlt.");
-    }
+    if (window.KdsBanner) window.KdsBanner(target, config.banner);
   }
 
   function startPopup() {
@@ -94,13 +89,8 @@
   }
 
   function load() {
-    loadScript(BANNER_URL)
-      .then(startBanner)
-      .catch(function (e) { console.warn("KDS Banner konnte nicht geladen werden", e); });
-
-    loadScript(POPUP_URL)
-      .then(startPopup)
-      .catch(function (e) { console.warn("KDS Popup konnte nicht geladen werden", e); });
+    loadScript(BANNER_URL).then(startBanner).catch(function (e) { console.warn("KDS Banner konnte nicht geladen werden", e); });
+    loadScript(POPUP_URL).then(startPopup).catch(function (e) { console.warn("KDS Popup konnte nicht geladen werden", e); });
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", load);
