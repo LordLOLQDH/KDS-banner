@@ -5,52 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#050505">
   <title>KDS Komponenten – Demo</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>body{font-family:Arial,Helvetica,sans-serif;background:#050505;color:#fff}</style>
+  <style>body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#050505;color:#fff}main{max-width:900px;margin:auto;padding:80px 20px;text-align:center}h1{font-size:48px}p{color:#aaa;line-height:1.6}.orange{color:#ff6a00}</style>
 </head>
 <body>
-  <header class="border-b border-[#222] bg-[#080808]">
-    <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
-      <div><div class="text-xl font-bold">Kraus <span class="text-[#ff6a00]">Digital Solutions</span></div><div class="mt-1 text-[10px] tracking-[2px] text-neutral-500">COMPONENT PREVIEW</div></div>
-      <a href="index.html" class="rounded-lg border border-[#333] px-4 py-2 text-sm font-bold hover:border-[#ff6a00]">← Index</a>
-    </div>
-  </header>
-
-  <main class="min-h-screen">
-    <section class="mx-auto max-w-3xl px-6 py-16 text-center sm:py-20">
-      <div class="text-xs font-bold tracking-[2px] text-[#ff6a00]">KDS BANNER + POPUP</div>
-      <h1 class="mt-4 text-4xl font-bold sm:text-5xl">Nur die <span class="text-[#ff6a00]">Komponenten.</span></h1>
-      <p class="mx-auto mt-5 max-w-xl text-neutral-400">Diese Demo zeigt ausschließlich das KDS-Banner und den KDS-Popup. Der Popup erscheint automatisch nach 8 Sekunden.</p>
-    </section>
-
-    <section class="mx-auto max-w-xl px-4 pb-20 sm:px-6">
-      <div class="overflow-hidden rounded-2xl border border-[#222] bg-[#0d0d0d]">
-        <div style="height:5px;background:#ff6a00"></div>
-        <div class="bg-[#080808] px-7 py-7 sm:px-9"><div class="text-2xl font-bold">Kraus <span class="text-[#ff6a00]">Digital Solutions</span></div><div class="mt-2 text-xs tracking-[1.5px]">DIGITAL INSIGHTS</div></div>
-        <div class="px-7 pt-10 sm:px-9"><div class="text-xs font-bold tracking-[2px] text-[#ff6a00]">TESTKUNDEN-RABATT</div><h2 class="mt-3 text-3xl font-bold leading-tight">Diese Website wurde von<br><span class="text-[#ff6a00]">Kraus Digital Solutions</span> gemacht</h2><p class="mt-5 text-base leading-relaxed">Du willst auch eine eigene Website? Für unsere ersten Testkunden gibt es einen starken Rabatt – im Gegenzug für eine ehrliche Bewertung. Begrenzte Plätze.</p></div>
-        <div class="px-7 pb-10 sm:px-9"><div class="mt-7 space-y-2.5">
-          <div class="rounded-lg border border-[#292929] bg-[#111] p-4"><strong class="text-[#ff6a00]">01 — Neue Websites</strong><p class="mt-1.5 text-sm">Von null auf online – modern, schnell &amp; conversion-orientiert.</p></div>
-          <div class="rounded-lg border border-[#292929] bg-[#111] p-4"><strong class="text-[#ff6a00]">02 — Redesign</strong><p class="mt-1.5 text-sm">Alt wird neu. Wir ersetzen veraltete Websites durch moderne, die funktionieren.</p></div>
-          <div class="rounded-lg border border-[#292929] bg-[#111] p-4"><strong class="text-[#ff6a00]">03 — Optimierung</strong><p class="mt-1.5 text-sm">Schneller, besser, mehr Kunden – systematisch verbessert.</p></div>
-        </div></div>
-        <div class="px-7 pb-11 text-center sm:px-9"><a href="https://kraus-digital-solutions.base44.app/kontakt" target="_blank" rel="noopener noreferrer" class="inline-block rounded-lg bg-[#ff6a00] px-7 py-4 font-bold">Testkunden-Rabatt sichern →</a></div>
-        <div class="border-t border-[#252525] bg-[#080808] px-7 py-6 sm:px-9"><div class="font-bold">Adam Gabriel Kraus</div><div class="mt-1 text-[13px] text-[#ff6a00]">Kraus Digital Solutions</div></div>
-        <div style="height:4px;background:#ff6a00"></div>
-      </div>
-    </section>
+  <main>
+    <div class="orange">KDS BANNER + POPUP</div>
+    <h1>Nur die <span class="orange">Komponenten.</span></h1>
+    <p>Diese Demo lädt Banner und Popup über den GitHub-Remote-Loader. Es gibt keinen Base44-Endpoint für die Auslieferung.</p>
   </main>
 
-  <script>
-    const key='kds_components_demo_popup_seen';
-    if(!sessionStorage.getItem(key)){
-      setTimeout(()=>{
-        const overlay=document.createElement('div');
-        overlay.className='fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm';
-        overlay.innerHTML='<div class="relative w-full max-w-md overflow-hidden rounded-2xl border border-[#222] bg-[#0d0d0d] shadow-2xl"><div style="height:5px;background:#ff6a00"></div><button id="closeKds" class="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-[#1a1a1a] text-xl text-white/70">×</button><div class="px-7 pt-9 sm:px-9"><div class="text-xl font-bold">Kraus <span class="text-[#ff6a00]">Digital Solutions</span></div><div class="mt-1.5 text-[11px] tracking-[1.5px]">DIGITAL INSIGHTS</div><div class="mt-7 text-xs font-bold tracking-[2px] text-[#ff6a00]">TESTKUNDEN-RABATT</div><h2 class="mt-3 text-2xl font-bold leading-tight">Du brauchst auch eine <span class="text-[#ff6a00]">Website?</span></h2><p class="mt-3 text-sm leading-relaxed text-[#d4d4d4]">Diese Website wurde von Kraus Digital Solutions gemacht. Für unsere ersten Testkunden gibt es einen starken Rabatt – im Gegenzug für eine ehrliche Bewertung. Begrenzte Plätze.</p></div><div class="px-7 pb-9 pt-7 text-center sm:px-9"><a href="https://kraus-digital-solutions.base44.app/kontakt" target="_blank" rel="noopener noreferrer" class="inline-block rounded-lg bg-[#ff6a00] px-7 py-3.5 font-bold">Testkunden-Rabatt sichern →</a><button id="noKds" class="mt-4 block w-full text-xs text-[#888] underline">Nein danke</button></div><div style="height:4px;background:#ff6a00"></div></div>';
-        document.body.appendChild(overlay); sessionStorage.setItem(key,'1');
-        const close=()=>overlay.remove(); document.getElementById('closeKds').onclick=close; document.getElementById('noKds').onclick=close; overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
-      },8000);
-    }
-  </script>
+  <!-- Ein Link: der Loader lädt KdsBanner.js und KdsPopup.js direkt aus GitHub. -->
+  <script src="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/kds-embed.js" defer></script>
 </body>
 </html>
