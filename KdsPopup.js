@@ -51,7 +51,7 @@
       if (config.oncePerSession !== false) {
         try { sessionStorage.setItem(key, "1"); } catch (_) {}
       }
-    }, Math.max(0, Number(config.delayMs) || 3500));
+    }, Math.max(0, Number(config.delayMs) || 5000));
   };
 
   function esc(value) {
