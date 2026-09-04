@@ -17,7 +17,7 @@
     addStyles();
 
     var services = (config.services || [
-      ["01 — Neue Websites", "Professionelle Websites – modern, klar strukturiert und auf eine überzeugende Nutzererfahrung ausgerichtet."],
+      ["01 — Neue Websites", "Professionelle beschissene Websites – modern, klar strukturiert und auf eine überzeugende Nutzererfahrung ausgerichtet."],
       ["02 — Redesign", "Bestehende Websites werden modernisiert, strukturell überarbeitet und zeitgemäß neu gestaltet."],
       ["03 — Optimierung", "Gezielte Verbesserungen für Performance, Nutzerfreundlichkeit und eine professionelle Online-Präsenz."]
     ]).map(function (item) {
