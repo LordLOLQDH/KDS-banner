@@ -9,23 +9,23 @@
 </style>
 </head>
 <body>
-<section class="hero"><div class="hero-card"><div class="eyebrow">KDS COMPONENT PREVIEW</div><h1>Banner & <span class="eyebrow">Popup</span></h1><p>Dies ist die reine Vorschau der echten KDS-Komponenten. Banner und Popup werden direkt in der aktuellen veröffentlichten Version geladen.</p></div></section>
+<section class="hero"><div class="hero-card"><div class="eyebrow">KDS COMPONENT PREVIEW</div><h1>Banner & <span class="eyebrow">Popup</span></h1><p>Dies ist die reine Vorschau der KDS-Komponenten. Banner und Popup werden als eigenständige Browser-Komponenten geladen.</p></div></section>
 <section class="section">
-  <div class="test"><h2>Remote-Import</h2><p>Die Vorschau verwendet dieselben Standalone-Komponenten wie der Kundeneinbau:</p><code class="code">https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@e4bd9e4f0d6379300a693af2fd5fcaf9f3344137/KdsBanner.js
-https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@6fec55424f0552188a5bac4524e1a4afd2fc13ef/KdsPopup.js</code><div id="status" class="status">Lade aktuelle KDS-Komponenten …</div></div>
+  <div class="test"><h2>Remote-Import</h2><p>Die Vorschau verwendet dieselben Standalone-Komponenten wie der Kundeneinbau:</p><code class="code">https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@5a586f39156acb327610dc0d314684516b7ccdc8/KdsBanner.js
+https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@042cb097731d5205955eaecf3053a1e846e588fe/KdsPopup.js</code><div id="status" class="status">Lade aktuelle KDS-Komponenten …</div></div>
   <div class="preview-label">ECHTER KDS BANNER</div>
   <div id="kds-demo"></div>
-  <div class="test"><h2>Popup-Test</h2><p>Das echte KDS Popup erscheint automatisch nach <strong>8 Sekunden</strong>.</p><code class="code">delayMs: 8000</code></div>
+  <div class="test"><h2>Popup-Test</h2><p>Das echte KDS Popup erscheint automatisch nach <strong>3,5 Sekunden</strong>.</p><code class="code">delayMs: 3500</code></div>
 </section>
-<script src="https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@e4bd9e4f0d6379300a693af2fd5fcaf9f3344137/KdsBanner.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@6fec55424f0552188a5bac4524e1a4afd2fc13ef/KdsPopup.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@5a586f39156acb327610dc0d314684516b7ccdc8/KdsBanner.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@042cb097731d5205955eaecf3053a1e846e588fe/KdsPopup.js"></script>
 <script>
 (function(){
   var target=document.getElementById('kds-demo');
   if(window.KdsBanner && window.KdsPopup){
     window.KdsBanner(target);
-    window.KdsPopup(target,{delayMs:8000,oncePerSession:false});
-    document.getElementById('status').textContent='✓ Aktuelle KDS-Komponenten geladen. Popup: 8 Sekunden.';
+    window.KdsPopup(target,{delayMs:3500,oncePerSession:false});
+    document.getElementById('status').textContent='✓ Aktuelle KDS-Komponenten geladen. Popup: 3,5 Sekunden.';
   }else{
     document.getElementById('status').textContent='✕ KDS-Komponenten konnten nicht geladen werden.';
   }
