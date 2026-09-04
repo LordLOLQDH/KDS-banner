@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050505">
+  <title>KDS Banner – Download & Demo</title>
+  <style>
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:#050505;color:#fff;font-family:Arial,Helvetica,sans-serif}body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 0%,rgba(255,106,0,.12),transparent 38%)}
+    a{text-decoration:none;color:inherit}.wrap{width:min(1050px,calc(100% - 32px));margin:auto}.nav{display:flex;align-items:center;justify-content:space-between;padding:24px 0;border-bottom:1px solid #222}.brand{font-size:21px;font-weight:800}.orange{color:#ff6a00}.tag{font-size:10px;letter-spacing:2px;color:#888;margin-top:4px}.hero{text-align:center;padding:82px 0 55px}.eyebrow{display:inline-block;color:#ff6a00;font-size:11px;font-weight:800;letter-spacing:2px;border:1px solid #3a210f;background:#160c05;border-radius:999px;padding:9px 13px}.hero h1{font-size:clamp(38px,7vw,72px);line-height:1.02;margin:22px auto 18px;max-width:850px}.hero p{max-width:650px;margin:auto;color:#aaa;font-size:17px;line-height:1.7}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding-bottom:18px}.card{background:#0d0d0d;border:1px solid #242424;border-radius:18px;padding:25px;box-shadow:0 18px 50px rgba(0,0,0,.25)}.card h2{margin:0 0 7px;font-size:21px}.card p{margin:0 0 20px;color:#888;line-height:1.55;font-size:14px}.buttons{display:grid;gap:10px}.btn{display:flex;align-items:center;justify-content:center;min-height:48px;padding:13px 17px;border-radius:10px;border:1px solid #303030;background:#151515;font-weight:700;transition:.2s}.btn:hover{transform:translateY(-2px);border-color:#ff6a00}.btn.primary{background:#ff6a00;border-color:#ff6a00}.btn.primary:hover{background:#ff7b22}.downloads{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.downloads .btn{font-size:13px}.section-title{text-align:center;padding:55px 0 22px}.section-title h2{font-size:30px;margin:0 0 8px}.section-title p{color:#777;margin:0}.footer{text-align:center;border-top:1px solid #222;margin-top:60px;padding:30px 0;color:#666;font-size:13px}.note{margin-top:18px;padding:13px 15px;border:1px solid #242424;border-radius:10px;background:#0a0a0a;color:#777;font-size:12px;line-height:1.5}
+    @media(max-width:700px){.grid{grid-template-columns:1fr}.downloads{grid-template-columns:1fr}.hero{padding-top:60px}.nav{padding:18px 0}.hero p{font-size:15px}.card{padding:21px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <div><div class="brand">Kraus <span class="orange">Digital Solutions</span></div><div class="tag">KDS BANNER SYSTEM</div></div>
+      <a class="btn" style="min-height:40px;padding:9px 14px" href="https://github.com/LordLOLQDH/KDS-banner" target="_blank">GitHub ↗</a>
+    </nav>
+
+    <header class="hero">
+      <div class="eyebrow">KDS COMPONENTS</div>
+      <h1>Banner & Popup.<br><span class="orange">Einfach testen.</span></h1>
+      <p>Hier kannst du die KDS-Komponenten direkt ausprobieren, die beiden React-Dateien einzeln oder zusammen herunterladen und die Demo-Seiten öffnen.</p>
+    </header>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Live-Demos</h2>
+        <p>Zwei unterschiedliche Vorschauen. Eine komplette Beispiel-Website oder nur die KDS-Komponenten.</p>
+        <div class="buttons">
+          <a class="btn primary" href="demo.html">Komplette Demo-Website →</a>
+          <a class="btn" href="components-demo.html">Nur Banner & Popup →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Komponenten herunterladen</h2>
+        <p>Die originalen React-Komponenten aus diesem Repository. Tailwind CSS und lucide-react werden vom Popup benötigt.</p>
+        <div class="downloads">
+          <a class="btn primary" download="KdsBanner.jsx" href="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/KdsBanner.jsx">Banner</a>
+          <a class="btn primary" download="KdsPopup.jsx" href="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/KdsPopup.jsx">Popup</a>
+          <a class="btn" download href="https://github.com/LordLOLQDH/KDS-banner/archive/refs/heads/main.zip">Beide (ZIP)</a>
+        </div>
+        <div class="note">„Beide (ZIP)“ lädt das komplette Repository herunter. Die einzelnen Buttons laden nur die jeweilige JSX-Datei.</div>
+      </article>
+    </section>
+
+    <section>
+      <div class="section-title"><h2>Was ist enthalten?</h2><p>Aktuelle Versionen des KDS-Systems</p></div>
+      <div class="grid">
+        <article class="card"><h2><span class="orange">01</span> KdsBanner.jsx</h2><p>Das KDS-Banner mit Branding, Testkunden-Rabatt, Leistungsübersicht und CTA.</p><a class="btn" href="KdsBanner.jsx" target="_blank">Datei ansehen →</a></article>
+        <article class="card"><h2><span class="orange">02</span> KdsPopup.jsx</h2><p>Das Popup erscheint nach 8 Sekunden und verwendet sessionStorage, damit es pro Sitzung nur einmal erscheint.</p><a class="btn" href="KdsPopup.jsx" target="_blank">Datei ansehen →</a></article>
+      </div>
+    </section>
+
+    <footer class="footer">Adam Gabriel Kraus · Kraus Digital Solutions</footer>
+  </div>
+</body>
+</html>
