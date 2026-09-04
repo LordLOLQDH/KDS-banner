@@ -3,8 +3,9 @@
   "use strict";
 
   var ROOT_ID = "kds-central-root";
-  var BANNER_URL = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/KdsBanner.js";
-  var POPUP_URL = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/KdsPopup.js";
+  var VERSION = "emoji-test-2";
+  var BANNER_URL = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/KdsBanner.js?" + VERSION;
+  var POPUP_URL = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/KdsPopup.js?" + VERSION;
 
   var config = {
     banner: {
@@ -93,7 +94,6 @@
   }
 
   function load() {
-    // The banner must not depend on the popup. If the popup fails, the banner still loads.
     loadScript(BANNER_URL)
       .then(startBanner)
       .catch(function (e) { console.warn("KDS Banner konnte nicht geladen werden", e); });
