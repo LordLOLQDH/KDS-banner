@@ -1,38 +1,52 @@
-# KDS Banner
+# KDS Banner & Popup – zentrale Integration
 
-Zentrale KDS-Banner-Komponente für Kundenwebsites.
+Dieses Repository enthält die zentral ausgelieferte KDS-Integration für Kunden-Websites.
 
-## Demo
+## Wie die zentrale Steuerung funktioniert
 
-index.html leitet automatisch auf demo.html weiter.
-Die Demo ist eine neutrale, vollständige Beispielwebsite für die fiktive Firma „Nordlicht Studio“.
+Kunden-Websites binden **ein einziges Script** ein: `kds-embed.js`.
 
-- Startseite: KDS-Banner + KDS-Popup
-- Kontaktseite: kein KDS-Popup und kein KDS-Banner
-- Das Popup erscheint bei jedem neuen Laden der Startseite erneut.
-- kontakt.html kann direkt über die Navigation geöffnet werden.
+Das Script lädt die aktuelle Konfiguration bei jedem Seitenaufruf aus diesem Repository:
+
+`kds-embed.js` → `kds-config.json` → Banner / Popup
+
+Dadurch können Inhalte, Aktivierung und Popup-Verhalten zentral über `kds-config.json` geändert werden. Die Kunden-Website muss dafür nicht jedes Mal neu bearbeitet werden.
 
 ## Einbindung
 
 ```html
-<script
-  src="https://lordlolqdh.github.io/KDS-banner/kds-banner.js"
-  data-customer="ziemlich-beschissen"
-  data-mode="both"
-  data-home-only="true">
-</script>
+<script src="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/kds-embed.js" defer></script>
 ```
 
-## Modi
+Das Script erzeugt Banner und Popup selbst und benötigt für diese zentrale Einbindung **kein React und kein Tailwind CSS** auf der Kunden-Website.
 
-- both – Popup + Banner
-- popup – nur Popup
-- banner – nur Banner
+## Zentrale Konfiguration
 
-data-home-only="true" verhindert die Anzeige auf Unterseiten. Alternativ kann das Script ausschließlich auf der Startseite eingebunden werden.
+Die Datei `kds-config.json` enthält unter anderem:
 
-Die zentrale Konfiguration liegt in config.json.
+- globale Aktivierung
+- Banner an/aus
+- Popup an/aus
+- Popup-Verzögerung (aktuell 8 Sekunden)
+- einmal pro Session
+- Banner-Texte
+- Popup-Texte
+- CTA und Ziel-URL
+- Services
+- KDS Footer
 
-## Hinweis
+Wenn beispielsweise der Banner-Text in `kds-config.json` geändert wird, übernimmt eine bereits eingebundene Kunden-Website die neue Konfiguration beim nächsten Laden.
 
-Die Komponente ist zentral verwaltbar, aber keine technische Kopiersperre. Ein Betreiber mit vollständigem Zugriff auf seine Website kann eine Script-Einbindung grundsätzlich entfernen.
+## Wichtiger Hinweis zur Aktualität
+
+Der Loader verwendet bewusst die zentrale Repository-Datei. Browser, CDN oder Proxy können Antworten trotzdem zwischenspeichern. Deshalb ist die Lösung für normale zentrale Inhaltsänderungen gedacht, nicht für eine garantiert millisekundengenaue Echtzeitübertragung.
+
+## Bestehende React-Komponenten
+
+`KdsBanner.jsx` und `KdsPopup.jsx` bleiben im Repository als React-Versionen der Komponenten erhalten. Für die zentrale, framework-unabhängige Kunden-Einbindung ist `kds-embed.js` vorgesehen.
+
+## Sicherheit
+
+Die Integration enthält keine geheimen Admin-Passwörter oder API-Schlüssel. Die öffentlich ausgelieferte Konfiguration darf nur öffentliche KDS-Inhalte enthalten.
+
+Ein Website-Betreiber mit vollständigem Zugriff auf seine eigene Website kann eine Script-Einbindung technisch entfernen. Das System ist daher zentral steuerbar, aber keine unentfernbare Kopiersperre.
