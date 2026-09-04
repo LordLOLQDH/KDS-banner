@@ -7,26 +7,47 @@
   <style>
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:transparent}
-    body{font-family:Inter,Arial,Helvetica,sans-serif}
-    .kds{width:100%;padding:24px 28px;border-radius:16px;background:linear-gradient(135deg,#080808,#171717);border:1px solid #ff8a00;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .content{min-width:0}
-    .brand{font-weight:800;font-size:13px;margin-bottom:6px}
-    .label{color:#ff8a00;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
-    .title{font-size:clamp(20px,3vw,28px);line-height:1.2;font-weight:800;margin:0 0 8px}
-    .text{color:#cfcfcf;font-size:13px;line-height:1.55;margin:0;max-width:760px}
-    .button{flex:0 0 auto;display:inline-block;padding:11px 16px;border-radius:8px;background:#ff8a00;color:#111;text-decoration:none;font-weight:800;font-size:12px;white-space:nowrap}
-    @media(max-width:700px){.kds{padding:20px 18px;display:block}.text{margin-bottom:14px}.button{display:block;text-align:center;width:100%}}
+    body{font-family:Arial,Helvetica,sans-serif}
+    .kds{width:100%;max-width:620px;margin:0 auto;padding:0;background:#0d0d0d;border:1px solid #222;border-radius:16px;overflow:hidden;color:#fff}
+    .bar{height:5px;background:#ff6a00}
+    .inner{padding:30px 28px}
+    .brand{font-size:25px;line-height:1.15;font-weight:700;margin-bottom:5px}
+    .brand span{color:#ff6a00}
+    .subbrand{font-size:12px;letter-spacing:1.5px;color:#fff;margin-bottom:28px}
+    .label{font-size:12px;font-weight:700;letter-spacing:2px;color:#ff6a00;margin-bottom:10px}
+    .title{font-size:34px;line-height:1.15;font-weight:700;margin:0 0 16px;color:#fff}
+    .title span{color:#ff6a00}
+    .text{font-size:16px;line-height:1.7;color:#fff;margin:0 0 22px}
+    .notice{padding:18px;background:#111;border:1px solid #292929;border-radius:9px;margin-bottom:18px}
+    .notice-title{font-size:15px;font-weight:700;color:#ff6a00;margin-bottom:7px}
+    .notice-text{font-size:14px;line-height:1.6;color:#fff;margin:0}
+    .button{display:inline-block;padding:15px 28px;border-radius:8px;background:#ff6a00;color:#fff;text-decoration:none;font-weight:700;font-size:14px}
+    .footer{padding:18px 28px;background:#080808;border-top:1px solid #252525;text-align:center}
+    .footer-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px}
+    .footer-company{font-size:13px;color:#ff6a00}
+    @media(max-width:700px){.inner{padding:25px 20px}.title{font-size:29px}.text{font-size:15px}.footer{padding:18px 20px}.button{width:100%;text-align:center}}
   </style>
 </head>
 <body>
   <section class="kds" aria-label="Hinweis zur Erstellung der Website">
-    <div class="content">
-      <div class="brand">Kraus Digital Solutions</div>
-      <div class="label">Website erstellt von KDS</div>
-      <h1 class="title">Professionelle Websites. <span style="color:#ff8a00">Digital umgesetzt.</span></h1>
-      <p class="text">Diese Website wurde von Kraus Digital Solutions konzipiert und umgesetzt. Sie möchten ebenfalls eine moderne, professionelle Website für Ihr Unternehmen? Wir entwickeln individuelle digitale Lösungen passend zu Ihrem Projekt.</p>
+    <div class="bar"></div>
+    <div class="inner">
+      <div class="brand">Kraus <span>Digital Solutions</span></div>
+      <div class="subbrand">DIGITAL INSIGHTS</div>
+      <div class="label">WEBSITE CHECK</div>
+      <h1 class="title">Diese Website wurde von <span>KDS</span> erstellt.</h1>
+      <p class="text">Kraus Digital Solutions entwickelt moderne, professionelle Websites und digitale Lösungen für Unternehmen. Diese Website wurde von uns konzipiert und umgesetzt – mit Fokus auf ein klares Design, eine professionelle Darstellung und eine zuverlässige digitale Präsenz.</p>
+      <div class="notice">
+        <div class="notice-title">01 — Professioneller Webauftritt</div>
+        <p class="notice-text">Sie möchten ebenfalls eine moderne Website, die professionell aussieht und zu Ihrem Unternehmen passt? Wir entwickeln individuelle Lösungen und setzen Ihre Ideen digital um.</p>
+      </div>
+      <a class="button" href="https://kraus-digital-solutions.base44.app/kontakt" target="_blank" rel="noopener noreferrer">Mehr über KDS →</a>
     </div>
-    <a class="button" href="https://kraus-digital-solutions.base44.app/kontakt" target="_blank" rel="noopener noreferrer">Mehr über KDS →</a>
+    <div class="footer">
+      <div class="footer-name">Kraus Digital Solutions</div>
+      <div class="footer-company">Professionelle digitale Lösungen</div>
+    </div>
+    <div class="bar" style="height:4px"></div>
   </section>
 </body>
 </html>
