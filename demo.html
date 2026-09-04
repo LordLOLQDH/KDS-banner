@@ -3,20 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CRÈME &amp; KRUSTE – Bäckerei Demo · KDS Integration</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>html{scroll-behavior:smooth}body{margin:0;background:#fffaf3;color:#3c2923;font-family:Georgia,'Times New Roman',serif}.sans{font-family:Arial,Helvetica,sans-serif}</style>
+<title>KDS Komponenten-Demo</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f4f4;color:#111;font-family:Arial,Helvetica,sans-serif}.hero{min-height:55vh;display:grid;place-items:center;padding:60px 20px;background:linear-gradient(135deg,#111,#242424)}.hero-card{width:min(900px,100%);padding:48px;border:1px solid #333;border-radius:24px;background:#0b0b0b;color:#fff;box-shadow:0 25px 70px rgba(0,0,0,.3)}.orange{color:#ff6a00}.eyebrow{font-size:12px;letter-spacing:3px;font-weight:700;color:#ff6a00}.hero h1{margin:12px 0;font-size:clamp(40px,7vw,72px);line-height:1}.hero p{max-width:680px;color:#bbb;font-size:18px;line-height:1.6}.section{width:min(900px,100%);margin:0 auto;padding:70px 20px}.test{padding:28px;border-radius:18px;background:#fff;border:1px solid #ddd}.test h2{margin-top:0}.code{display:block;overflow:auto;padding:18px;border-radius:12px;background:#111;color:#fff;font-family:monospace;font-size:13px;line-height:1.6}.status{margin-top:20px;padding:14px 16px;border-radius:10px;background:#e9e9e9;font-weight:700}
+.kds-central-banner{box-sizing:border-box;max-width:760px;margin:32px auto;padding:0 16px;font-family:Arial,Helvetica,sans-serif}.kds-central-card{overflow:hidden;border:1px solid #222;border-radius:16px;background:#0d0d0d;color:#fff;box-shadow:0 10px 35px rgba(0,0,0,.16)}.kds-orange{color:#ff6a00}.kds-topline{height:5px;background:#ff6a00}.kds-head{padding:28px 32px;background:#080808}.kds-brand{font-size:24px;font-weight:700}.kds-eyebrow{margin-top:8px;font-size:11px;letter-spacing:1.5px}.kds-body{padding:36px 32px 12px}.kds-badge{font-size:11px;font-weight:700;letter-spacing:2px;color:#ff6a00}.kds-title{margin:12px 0 0;font-size:30px;line-height:1.15}.kds-copy{margin:18px 0 0;color:#fff;font-size:15px;line-height:1.6}.kds-services{padding:8px 32px 34px}.kds-service{margin-top:10px;padding:15px;border:1px solid #292929;border-radius:9px;background:#111}.kds-service strong{color:#ff6a00}.kds-service p{margin:6px 0 0;color:#fff;font-size:14px;line-height:1.5}.kds-cta-wrap{padding:0 32px 36px;text-align:center}.kds-cta{display:inline-block;padding:15px 28px;border-radius:8px;background:#ff6a00;color:#fff!important;text-decoration:none!important;font-weight:700}.kds-footer{padding:24px 32px;background:#080808;border-top:1px solid #252525}.kds-footer-company{margin-top:4px;color:#ff6a00;font-size:13px}.kds-bottomline{height:4px;background:#ff6a00}.kds-popup{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:16px}.kds-popup-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(4px)}.kds-popup-card{position:relative;width:100%;max-width:440px;overflow:hidden;border:1px solid #222;border-radius:16px;background:#0d0d0d;color:#fff;font-family:Arial,Helvetica,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,.4)}.kds-popup-content{padding:30px 28px 14px}.kds-popup-brand{font-size:21px;font-weight:700}.kds-popup-eyebrow{margin-top:6px;font-size:10px;letter-spacing:1.5px}.kds-popup-badge{margin-top:26px;font-size:11px;font-weight:700;letter-spacing:2px;color:#ff6a00}.kds-popup-title{margin:10px 0 0;font-size:25px;line-height:1.2}.kds-popup-copy{margin:12px 0 0;color:#d4d4d4;font-size:14px;line-height:1.6}.kds-popup-actions{padding:20px 28px 28px;text-align:center}.kds-popup-close{position:absolute;right:12px;top:12px;width:32px;height:32px;border:0;border-radius:50%;background:#1a1a1a;color:#fff;font-size:20px;line-height:32px;cursor:pointer}.kds-popup-no{display:block;width:100%;margin-top:14px;border:0;background:transparent;color:#888;text-decoration:underline;cursor:pointer}.kds-hidden{display:none!important}
+</style>
 </head>
 <body>
-<main class="min-h-screen">
-<header class="sticky top-0 z-20 border-b border-[#eaded0] bg-[#fffaf3]/95 backdrop-blur"><div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5"><div class="text-2xl font-bold tracking-tight">CRÈME <span class="text-[#b85c50]">&amp;</span> KRUSTE</div><nav class="sans hidden gap-7 text-sm font-bold text-[#705c52] sm:flex"><a href="#home">Start</a><a href="#sortiment">Sortiment</a><a href="#ueber-uns">Über uns</a><a href="#kontakt">Kontakt</a></nav></div></header>
-<section id="home" class="relative overflow-hidden border-b border-[#eaded0]"><div class="absolute right-[-100px] top-[-100px] h-80 w-80 rounded-full bg-[#f1c8bb]/60"></div><div class="absolute bottom-[-140px] left-[-100px] h-96 w-96 rounded-full bg-[#e8d7b8]/50"></div><div class="relative mx-auto grid max-w-6xl gap-12 px-6 py-24 sm:grid-cols-2 sm:items-center sm:py-32"><div><div class="sans mb-5 text-xs font-black tracking-[3px] text-[#b85c50]">HANDGEMACHT · FRISCH · TÄGLICH</div><h1 class="text-6xl font-bold leading-[.98] sm:text-8xl">Gutes Brot.<br><span class="text-[#b85c50]">Gutes Gefühl.</span></h1><p class="mt-7 max-w-xl text-lg leading-relaxed text-[#705c52]">Willkommen bei CRÈME &amp; KRUSTE – deiner kleinen Bäckerei für ehrliches Handwerk, warme Croissants und Brot, das nach Zuhause schmeckt.</p><a href="#sortiment" class="sans mt-8 inline-block rounded-full bg-[#3c2923] px-7 py-4 font-bold text-white">Unser Sortiment →</a></div><div class="relative hidden sm:block"><div class="aspect-[4/5] rounded-[3rem] bg-gradient-to-br from-[#d99b72] via-[#c8755d] to-[#7d4436] p-10 shadow-xl"><div class="flex h-full items-end rounded-[2.3rem] border border-white/30 bg-white/10 p-7"><div class="text-white"><div class="sans text-xs font-bold tracking-[3px]">OFENFRISCH</div><div class="mt-2 text-4xl font-bold">Jeden Morgen<br>frisch gebacken.</div></div></div></div></div></div></section>
-<section id="sortiment" class="mx-auto max-w-6xl px-6 py-20"><div class="mb-10"><div class="sans text-xs font-black tracking-[2px] text-[#b85c50]">UNSER SORTIMENT</div><h2 class="mt-2 text-4xl font-bold">Kleine Auswahl, große Liebe.</h2></div><div class="grid gap-6 sm:grid-cols-3"><div class="rounded-[2rem] border border-[#eaded0] bg-white p-7 shadow-sm"><div class="mb-6 flex h-32 items-center justify-center rounded-2xl bg-[#f3dfc8] text-6xl">🥐</div><h3 class="text-2xl font-bold">Croissants</h3><p class="mt-2 text-sm leading-relaxed text-[#806b61]">Buttrig, knusprig und jeden Morgen frisch aus dem Ofen.</p></div><div class="rounded-[2rem] border border-[#eaded0] bg-white p-7 shadow-sm"><div class="mb-6 flex h-32 items-center justify-center rounded-2xl bg-[#e8d7b8] text-6xl">🍞</div><h3 class="text-2xl font-bold">Sauerteigbrot</h3><p class="mt-2 text-sm leading-relaxed text-[#806b61]">Langsam gereift, kräftige Kruste und weiche Krume.</p></div><div class="rounded-[2rem] border border-[#eaded0] bg-white p-7 shadow-sm"><div class="mb-6 flex h-32 items-center justify-center rounded-2xl bg-[#f1c8bb] text-6xl">🍰</div><h3 class="text-2xl font-bold">Kuchen</h3><p class="mt-2 text-sm leading-relaxed text-[#806b61]">Hausgemachte Kuchen und süße Stückchen für jede Pause.</p></div></div></section>
-<section id="ueber-uns" class="border-y border-[#eaded0] bg-[#f3e7d8]"><div class="mx-auto grid max-w-6xl gap-10 px-6 py-20 sm:grid-cols-2 sm:items-center"><div><div class="sans text-xs font-black tracking-[2px] text-[#b85c50]">UNSERE BÄCKEREI</div><h2 class="mt-3 text-4xl font-bold">Tradition trifft auf frische Ideen.</h2><p class="mt-5 leading-relaxed text-[#705c52]">Bei CRÈME &amp; KRUSTE verbinden wir klassisches Bäckerhandwerk mit modernen Rezepten. Wir backen in kleinen Mengen und achten auf gute Zutaten.</p></div><div class="rounded-[2.5rem] bg-[#fffaf3] p-8 shadow-sm"><div class="text-5xl font-bold text-[#b85c50]">05:30</div><div class="sans mt-2 font-bold">Der Ofen läuft schon.</div><div class="sans mt-7 grid grid-cols-2 gap-3 text-sm text-[#705c52]"><div class="rounded-xl bg-[#f3e7d8] p-4">Täglich frisch</div><div class="rounded-xl bg-[#f3e7d8] p-4">Regionale Zutaten</div><div class="rounded-xl bg-[#f3e7d8] p-4">Handwerk</div><div class="rounded-xl bg-[#f3e7d8] p-4">Kaffee &amp; Kuchen</div></div></div></div></section>
-<section id="kontakt" class="mx-auto max-w-6xl px-6 py-20"><div class="rounded-[2.5rem] bg-[#3c2923] p-8 text-white sm:p-12"><div class="sans text-xs font-black tracking-[2px] text-[#f1c8bb]">KONTAKT</div><h2 class="mt-3 text-4xl font-bold">Komm auf einen Kaffee vorbei.</h2><p class="mt-3 max-w-xl leading-relaxed text-white/70">Demo-Bereich – Banner und Popup werden direkt aus dem KDS-GitHub-Repository geladen.</p></div></section>
+<section class="hero">
+  <div class="hero-card">
+    <div class="eyebrow">KDS COMPONENT TEST</div>
+    <h1>Remote <span class="orange">Banner & Popup</span></h1>
+    <p>Diese Demo lädt die beiden KDS-Komponenten direkt über externe URLs. Die Dateien werden nicht in diese Demo kopiert.</p>
+  </div>
+</section>
 
-<!-- KDS GitHub Remote Embed: lädt Banner + Popup über kds-embed.js aus diesem Repository. -->
-<script src="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/kds-embed.js" defer></script>
-</main>
+<section class="section">
+  <div class="test">
+    <h2>Remote-Import aktiv</h2>
+    <p>Die Komponenten werden von jsDelivr aus dem GitHub-Repository geladen:</p>
+    <code class="code">https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/KdsBanner.js
+https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/KdsPopup.js</code>
+    <div id="status" class="status">Lade Komponenten …</div>
+  </div>
+
+  <div id="kds-demo"></div>
+
+  <div class="test">
+    <h2>Einbau auf Kunden-Websites</h2>
+    <p>Für Kunden reicht weiterhin ein einziger externer Link:</p>
+    <code class="code">&lt;script src="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/kds-embed.js" defer&gt;&lt;/script&gt;</code>
+  </div>
+</section>
+
+<!-- DIE BEIDEN KDS-KOMPONENTEN WERDEN REMOTE IMPORTIERT -->
+<script src="https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/KdsBanner.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/KdsPopup.js"></script>
+<script>
+(function(){
+  var target=document.getElementById('kds-demo');
+  var config={
+    banner:{enabled:true,eyebrow:'DIGITAL INSIGHTS',badge:'REMOTE COMPONENT',title:'KDS Banner wurde importiert',description:'Diese Komponente kommt live über eine externe URL aus dem KDS-GitHub-Repository.',cta:'KDS Website ansehen →',ctaUrl:'https://kraus-digital-solutions.base44.app',services:[['01 — Website','Modern, schnell und professionell.'],['02 — Redesign','Bestehende Seiten modernisieren.'],['03 — Optimierung','Mehr Geschwindigkeit und bessere Darstellung.']],footerName:'Kraus Digital Solutions',footerCompany:'Remote Component Demo'},
+    popup:{enabled:true,delayMs:800,oncePerSession:false,eyebrow:'REMOTE COMPONENT',badge:'POPUP TEST',title:'KDS Popup wurde importiert',description:'Auch das Popup kommt direkt von der externen Komponentendatei.',cta:'KDS öffnen →',ctaUrl:'https://kraus-digital-solutions.base44.app'}
+  };
+  if(window.KdsBanner && window.KdsPopup){
+    window.KdsBanner(target,config.banner);
+    window.KdsPopup(target,config.popup);
+    document.getElementById('status').textContent='✓ Beide Komponenten erfolgreich geladen und gestartet.';
+  }else{
+    document.getElementById('status').textContent='✕ Komponenten konnten nicht geladen werden.';
+  }
+})();
+</script>
 </body>
 </html>
