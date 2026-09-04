@@ -9,26 +9,29 @@
 </style>
 </head>
 <body>
-<section class="hero"><div class="hero-card"><div class="eyebrow">KDS COMPONENT PREVIEW</div><h1>Banner & <span class="eyebrow">Popup</span></h1><p>Dies ist die reine Vorschau der KDS-Komponenten. Banner und Popup werden zentral von GitHub geladen.</p></div></section>
+<section class="hero"><div class="hero-card"><div class="eyebrow">KDS COMPONENT PREVIEW</div><h1>Banner & <span class="eyebrow">Popup</span></h1><p>Dies ist die reine Vorschau der KDS-Komponenten. Die Einbindung wird exakt wie auf Kunden-Websites über kds-embed.js getestet.</p></div></section>
 <section class="section">
-  <div class="test"><h2>Remote-Import</h2><p>Die Vorschau verwendet die aktuelle Version aus dem KDS-Banner-Repository:</p><code class="code">https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/KdsBanner.js
-https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/KdsPopup.js</code><div id="status" class="status">Lade aktuelle KDS-Komponenten …</div></div>
+  <div class="test"><h2>Remote-Import</h2><p>Diese Demo verwendet ausschließlich den zentralen KDS Loader aus GitHub:</p><code class="code">https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/kds-embed.js</code><div id="status" class="status">KDS Loader wird geladen …</div></div>
   <div class="preview-label">ECHTER KDS BANNER</div>
   <div id="kds-demo"></div>
-  <div class="test"><h2>Popup-Test</h2><p>Das echte KDS Popup erscheint automatisch nach <strong>5 Sekunden</strong>.</p><code class="code">delayMs: 5000</code></div>
+  <div class="test"><h2>Popup-Test</h2><p>Das echte KDS Popup wird vom zentralen Loader automatisch nach <strong>5 Sekunden</strong> gestartet.</p></div>
 </section>
-<script src="https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/KdsBanner.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/KdsPopup.js"></script>
 <script>
 (function(){
-  var target=document.getElementById('kds-demo');
-  if(window.KdsBanner){
-    window.KdsBanner(target);
-    if(window.KdsPopup) window.KdsPopup(target,{delayMs:5000,oncePerSession:false});
-    document.getElementById('status').textContent='✓ Aktuelle KDS-Komponenten geladen. Banner-Test mit GitHub-Version aktiv.';
-  }else{
-    document.getElementById('status').textContent='✕ KdsBanner.js konnte nicht geladen werden.';
-  }
+  var status=document.getElementById('status');
+  function update(text){status.textContent=text;}
+  window.addEventListener('error',function(e){update('✕ JavaScript-Fehler: '+(e.message||'unbekannter Fehler'));});
+  var s=document.createElement('script');
+  s.src='https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/kds-embed.js?test='+Date.now();
+  s.onload=function(){
+    setTimeout(function(){
+      if(document.querySelector('[data-kds="banner"]')) update('✓ KDS Loader geladen und Banner erstellt. GitHub-Zentralversion aktiv.');
+      else if(window.KdsBanner) update('✓ KdsBanner.js geladen, aber Banner wurde noch nicht erstellt.');
+      else update('✓ Loader geladen, aber KdsBanner.js wurde nicht geladen.');
+    },1500);
+  };
+  s.onerror=function(){update('✕ kds-embed.js konnte nicht von GitHub/jsDelivr geladen werden.');};
+  document.head.appendChild(s);
 })();
 </script>
 </body>
