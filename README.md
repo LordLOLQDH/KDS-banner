@@ -50,3 +50,7 @@ Der Loader verwendet bewusst die zentrale Repository-Datei. Browser, CDN oder Pr
 Die Integration enthält keine geheimen Admin-Passwörter oder API-Schlüssel. Die öffentlich ausgelieferte Konfiguration darf nur öffentliche KDS-Inhalte enthalten.
 
 Ein Website-Betreiber mit vollständigem Zugriff auf seine eigene Website kann eine Script-Einbindung technisch entfernen. Das System ist daher zentral steuerbar, aber keine unentfernbare Kopiersperre.
+
+
+
+- Adam Gabriel Kraus
