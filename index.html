@@ -21,7 +21,7 @@
     <header class="hero">
       <div class="eyebrow">KDS COMPONENTS</div>
       <h1>Banner & Popup.<br><span class="orange">Einfach testen.</span></h1>
-      <p>Hier kannst du die KDS-Komponenten direkt ausprobieren, die beiden React-Dateien einzeln oder zusammen herunterladen und die Demo-Seiten öffnen.</p>
+      <p>Hier kannst du die KDS-Komponenten direkt ausprobieren und den zentralen Einbindungscode für deine Website kopieren.</p>
     </header>
 
     <section class="grid">
@@ -36,56 +36,38 @@
 
       <article class="card">
         <h2>Komponenten herunterladen</h2>
-        <p>Die originalen React-Komponenten aus diesem Repository. Tailwind CSS und lucide-react werden vom Popup benötigt.</p>
+        <p>Die originalen React-Komponenten aus diesem Repository. Für die zentrale Einbindung werden sie nicht benötigt.</p>
         <div class="downloads">
           <a class="btn primary" download="KdsBanner.jsx" href="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/KdsBanner.jsx">Banner</a>
           <a class="btn primary" download="KdsPopup.jsx" href="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/KdsPopup.jsx">Popup</a>
           <a class="btn" download href="https://github.com/LordLOLQDH/KDS-banner/archive/refs/heads/main.zip">Beide (ZIP)</a>
         </div>
-        <div class="note">„Beide (ZIP)“ lädt das komplette Repository herunter. Die einzelnen Buttons laden nur die jeweilige JSX-Datei.</div>
+        <div class="note">„Beide (ZIP)“ lädt das komplette Repository herunter. Die zentrale Einbindung funktioniert unabhängig von React.</div>
       </article>
     </section>
 
     <section>
-      <div class="section-title"><h2>In deine React-Website einbauen</h2><p>Code kopieren, Dateien hinzufügen und beide Komponenten einbinden.</p></div>
+      <div class="section-title"><h2>Zentrale Einbindung</h2><p>Dieser Code lädt das KDS-System direkt aus dem GitHub-Repository.</p></div>
       <div class="code-card">
         <div class="code-head">
-          <div class="code-label">Beispiel: App.jsx</div>
+          <div class="code-label">Beispiel: HTML</div>
           <button class="copy-btn" onclick="copyInstallCode(this)">Code kopieren</button>
         </div>
-        <div class="code-wrap"><pre class="code" id="install-code">import KdsBanner from "./KdsBanner";
-import KdsPopup from "./KdsPopup";
-
-export default function App() {
-  return (
-    &lt;&gt;
-      {/* Deine normale Website */}
-      <main>
-        {/* ... dein Inhalt ... */}
-      </main>
-
-      {/* KDS Banner – dort platzieren, wo es erscheinen soll */}
-      <KdsBanner />
-
-      {/* KDS Popup – einmal global einbinden */}
-      <KdsPopup />
-    &lt;/&gt;
-  );
-}</pre></div>
+        <div class="code-wrap"><pre class="code" id="install-code">&lt;script src="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/kds-embed.js" defer&gt;&lt;/script&gt;</pre></div>
       </div>
       <div class="steps">
-        <div class="step"><strong>01 — Dateien</strong><span><code>KdsBanner.jsx</code> und <code>KdsPopup.jsx</code> herunterladen und in dein React-Projekt legen.</span></div>
-        <div class="step"><strong>02 — Abhängigkeiten</strong><span>Tailwind CSS und <code>lucide-react</code> müssen in deinem Projekt eingerichtet sein.</span></div>
-        <div class="step"><strong>03 — Einfügen</strong><span>Die beiden Imports und Komponenten wie im Beispiel in deine App bzw. dein Layout übernehmen.</span></div>
+        <div class="step"><strong>01 — Code</strong><span>Diesen einen Script-Tag in deine Website einfügen, am besten kurz vor <code>&lt;/body&gt;</code>.</span></div>
+        <div class="step"><strong>02 — Zentrale Quelle</strong><span>Das Script lädt die aktuelle KDS-Konfiguration aus <code>kds-config.json</code> im GitHub-Repository.</span></div>
+        <div class="step"><strong>03 — Updates</strong><span>Änderungen an der zentralen KDS-Konfiguration können dadurch bei den eingebundenen Websites übernommen werden.</span></div>
       </div>
-      <div class="note">Der Code ist für eine React-Website gedacht. Bei einer normalen HTML/CSS/JS-Website funktioniert dieser React-Code nicht direkt.</div>
+      <div class="note">Für die zentrale Einbindung brauchst du auf der Kunden-Website weder React noch Tailwind CSS. Der Loader und die Konfiguration kommen aus dem KDS-Repository.</div>
     </section>
 
     <section>
       <div class="section-title"><h2>Was ist enthalten?</h2><p>Aktuelle Versionen des KDS-Systems</p></div>
       <div class="grid">
-        <article class="card"><h2><span class="orange">01</span> KdsBanner.jsx</h2><p>Das KDS-Banner mit Branding, Testkunden-Rabatt, Leistungsübersicht und CTA.</p><a class="btn" href="KdsBanner.jsx" target="_blank">Datei ansehen →</a></article>
-        <article class="card"><h2><span class="orange">02</span> KdsPopup.jsx</h2><p>Das Popup erscheint nach 8 Sekunden und verwendet sessionStorage, damit es pro Sitzung nur einmal erscheint.</p><a class="btn" href="KdsPopup.jsx" target="_blank">Datei ansehen →</a></article>
+        <article class="card"><h2><span class="orange">01</span> KdsBanner.jsx</h2><p>Die originale React-Komponente des KDS-Banners.</p><a class="btn" href="KdsBanner.jsx" target="_blank">Datei ansehen →</a></article>
+        <article class="card"><h2><span class="orange">02</span> KdsPopup.jsx</h2><p>Die originale React-Komponente des KDS-Popups.</p><a class="btn" href="KdsPopup.jsx" target="_blank">Datei ansehen →</a></article>
       </div>
     </section>
 
