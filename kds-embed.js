@@ -1,21 +1,10 @@
-/*
- * KDS Remote Embed
- *
- * Kunden-Website braucht nur diesen einen Link:
- * <script src="https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/kds-embed.js" defer></script>
- *
- * Dieser Loader greift NICHT auf Base44 zu.
- * Er lädt Banner und Popup als zwei separate Dateien direkt aus diesem GitHub-Repository.
- */
+/* KDS Remote Embed — loads both components from GitHub through jsDelivr CDN. */
 (function () {
   "use strict";
-
   var ROOT_ID = "kds-central-root";
-  var BASE = "https://raw.githubusercontent.com/LordLOLQDH/KDS-banner/main/";
+  var BASE = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/";
   var BANNER_URL = BASE + "KdsBanner.js";
   var POPUP_URL = BASE + "KdsPopup.js";
-  var SESSION_KEY = "kds_popup_seen";
-
   var config = {
     banner: {
       enabled: true,
@@ -25,18 +14,14 @@
       description: "Du willst auch eine eigene Website? Für unsere ersten Testkunden gibt es einen starken Rabatt – im Gegenzug für eine ehrliche Bewertung. Begrenzte Plätze.",
       cta: "Testkunden-Rabatt sichern →",
       ctaUrl: "https://kraus-digital-solutions.base44.app/kontakt",
-      services: [
-        ["01 — Neue Websites", "Von null auf online – modern, schnell & conversion-orientiert."],
-        ["02 — Redesign", "Alt wird neu. Wir ersetzen veraltete Websites durch moderne, die funktionieren."],
-        ["03 — Optimierung", "Schneller, besser, mehr Kunden – systematisch verbessert."]
-      ],
+      services: [["01 — Neue Websites", "Von null auf online – modern, schnell & conversion-orientiert."], ["02 — Redesign", "Alt wird neu. Wir ersetzen veraltete Websites durch moderne, die funktionieren."], ["03 — Optimierung", "Schneller, besser, mehr Kunden – systematisch verbessert."]],
       footerName: "Adam Gabriel Kraus",
       footerCompany: "Kraus Digital Solutions"
     },
     popup: {
       enabled: true,
-      delayMs: 8000,
-      oncePerSession: true,
+      delayMs: 1500,
+      oncePerSession: false,
       eyebrow: "DIGITAL INSIGHTS",
       badge: "TESTKUNDEN-RABATT",
       title: "Du brauchst auch eine Website?",
@@ -45,64 +30,14 @@
       ctaUrl: "https://kraus-digital-solutions.base44.app/kontakt"
     }
   };
-
   function addStyles() {
     if (document.getElementById("kds-central-styles")) return;
-    var style = document.createElement("style");
-    style.id = "kds-central-styles";
-    style.textContent = [
-      ".kds-central-banner{box-sizing:border-box;max-width:760px;margin:32px auto;padding:0 16px;font-family:Arial,Helvetica,sans-serif}",
-      ".kds-central-card{overflow:hidden;border:1px solid #222;border-radius:16px;background:#0d0d0d;color:#fff;box-shadow:0 10px 35px rgba(0,0,0,.16)}",
-      ".kds-orange{color:#ff6a00}.kds-topline{height:5px;background:#ff6a00}.kds-head{padding:28px 32px;background:#080808}.kds-brand{font-size:24px;font-weight:700}.kds-eyebrow{margin-top:8px;font-size:11px;letter-spacing:1.5px}.kds-body{padding:36px 32px 12px}.kds-badge{font-size:11px;font-weight:700;letter-spacing:2px;color:#ff6a00}.kds-title{margin:12px 0 0;font-size:30px;line-height:1.15}.kds-copy{margin:18px 0 0;color:#fff;font-size:15px;line-height:1.6}.kds-services{padding:8px 32px 34px}.kds-service{margin-top:10px;padding:15px;border:1px solid #292929;border-radius:9px;background:#111}.kds-service strong{color:#ff6a00}.kds-service p{margin:6px 0 0;color:#fff;font-size:14px;line-height:1.5}.kds-cta-wrap{padding:0 32px 36px;text-align:center}.kds-cta{display:inline-block;padding:15px 28px;border-radius:8px;background:#ff6a00;color:#fff!important;text-decoration:none!important;font-weight:700}.kds-footer{padding:24px 32px;background:#080808;border-top:1px solid #252525}.kds-footer-company{margin-top:4px;color:#ff6a00;font-size:13px}.kds-bottomline{height:4px;background:#ff6a00}",
-      ".kds-popup{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box}.kds-popup-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(4px)}.kds-popup-card{position:relative;width:100%;max-width:440px;overflow:hidden;border:1px solid #222;border-radius:16px;background:#0d0d0d;color:#fff;font-family:Arial,Helvetica,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,.4)}.kds-popup-content{padding:30px 28px 14px}.kds-popup-brand{font-size:21px;font-weight:700}.kds-popup-eyebrow{margin-top:6px;font-size:10px;letter-spacing:1.5px}.kds-popup-badge{margin-top:26px;font-size:11px;font-weight:700;letter-spacing:2px;color:#ff6a00}.kds-popup-title{margin:10px 0 0;font-size:25px;line-height:1.2}.kds-popup-copy{margin:12px 0 0;color:#d4d4d4;font-size:14px;line-height:1.6}.kds-popup-actions{padding:20px 28px 28px;text-align:center}.kds-popup-close{position:absolute;right:12px;top:12px;width:32px;height:32px;border:0;border-radius:50%;background:#1a1a1a;color:#fff;font-size:20px;line-height:32px;cursor:pointer}.kds-popup-no{display:block;width:100%;margin-top:14px;border:0;background:transparent;color:#888;text-decoration:underline;cursor:pointer}.kds-hidden{display:none!important}",
-      "@media(max-width:520px){.kds-head,.kds-body,.kds-services,.kds-cta-wrap,.kds-footer{padding-left:20px;padding-right:20px}.kds-title{font-size:25px}.kds-brand{font-size:21px}}"
-    ].join("");
+    var style = document.createElement("style"); style.id = "kds-central-styles";
+    style.textContent = ".kds-central-banner{box-sizing:border-box;max-width:760px;margin:32px auto;padding:0 16px;font-family:Arial,Helvetica,sans-serif}.kds-central-card{overflow:hidden;border:1px solid #222;border-radius:16px;background:#0d0d0d;color:#fff;box-shadow:0 10px 35px rgba(0,0,0,.16)}.kds-orange{color:#ff6a00}.kds-topline{height:5px;background:#ff6a00}.kds-head{padding:28px 32px;background:#080808}.kds-brand{font-size:24px;font-weight:700}.kds-eyebrow{margin-top:8px;font-size:11px;letter-spacing:1.5px}.kds-body{padding:36px 32px 12px}.kds-badge{font-size:11px;font-weight:700;letter-spacing:2px;color:#ff6a00}.kds-title{margin:12px 0 0;font-size:30px;line-height:1.15}.kds-copy{margin:18px 0 0;color:#fff;font-size:15px;line-height:1.6}.kds-services{padding:8px 32px 34px}.kds-service{margin-top:10px;padding:15px;border:1px solid #292929;border-radius:9px;background:#111}.kds-service strong{color:#ff6a00}.kds-service p{margin:6px 0 0;color:#fff;font-size:14px;line-height:1.5}.kds-cta-wrap{padding:0 32px 36px;text-align:center}.kds-cta{display:inline-block;padding:15px 28px;border-radius:8px;background:#ff6a00;color:#fff!important;text-decoration:none!important;font-weight:700}.kds-footer{padding:24px 32px;background:#080808;border-top:1px solid #252525}.kds-footer-company{margin-top:4px;color:#ff6a00;font-size:13px}.kds-bottomline{height:4px;background:#ff6a00}.kds-popup{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box}.kds-popup-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(4px)}.kds-popup-card{position:relative;width:100%;max-width:440px;overflow:hidden;border:1px solid #222;border-radius:16px;background:#0d0d0d;color:#fff;font-family:Arial,Helvetica,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,.4)}.kds-popup-content{padding:30px 28px 14px}.kds-popup-brand{font-size:21px;font-weight:700}.kds-popup-eyebrow{margin-top:6px;font-size:10px;letter-spacing:1.5px}.kds-popup-badge{margin-top:26px;font-size:11px;font-weight:700;letter-spacing:2px;color:#ff6a00}.kds-popup-title{margin:10px 0 0;font-size:25px;line-height:1.2}.kds-popup-copy{margin:12px 0 0;color:#d4d4d4;font-size:14px;line-height:1.6}.kds-popup-actions{padding:20px 28px 28px;text-align:center}.kds-popup-close{position:absolute;right:12px;top:12px;width:32px;height:32px;border:0;border-radius:50%;background:#1a1a1a;color:#fff;font-size:20px;line-height:32px;cursor:pointer}.kds-popup-no{display:block;width:100%;margin-top:14px;border:0;background:transparent;color:#888;text-decoration:underline;cursor:pointer}.kds-hidden{display:none!important}@media(max-width:520px){.kds-head,.kds-body,.kds-services,.kds-cta-wrap,.kds-footer{padding-left:20px;padding-right:20px}.kds-title{font-size:25px}.kds-brand{font-size:21px}}";
     document.head.appendChild(style);
   }
-
-  function root() {
-    var el = document.getElementById(ROOT_ID);
-    if (!el) {
-      el = document.createElement("div");
-      el.id = ROOT_ID;
-      document.body.appendChild(el);
-    }
-    return el;
-  }
-
-  function loadScript(url) {
-    return new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = url;
-      s.onload = resolve;
-      s.onerror = function () { reject(new Error("KDS-Datei konnte nicht geladen werden: " + url)); };
-      document.head.appendChild(s);
-    });
-  }
-
-  function start() {
-    addStyles();
-    var target = root();
-    target.innerHTML = "";
-    if (window.KdsBanner) window.KdsBanner(target, config.banner);
-    if (window.KdsPopup) window.KdsPopup(target, config.popup);
-  }
-
-  function load() {
-    Promise.all([loadScript(BANNER_URL), loadScript(POPUP_URL)])
-      .then(start)
-      .catch(function (error) {
-        console.warn("KDS Remote Embed konnte nicht geladen werden:", error);
-      });
-  }
-
-  function ready() {
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", load);
-    } else {
-      load();
-    }
-  }
-
-  ready();
+  function loadScript(url) { return new Promise(function(resolve,reject){ var s=document.createElement("script"); s.src=url; s.onload=resolve; s.onerror=function(){reject(new Error(url));}; document.head.appendChild(s); }); }
+  function start(){ addStyles(); var target=document.getElementById(ROOT_ID)||document.body.appendChild(document.createElement("div")); target.id=ROOT_ID; target.innerHTML=""; if(window.KdsBanner) window.KdsBanner(target,config.banner); if(window.KdsPopup) window.KdsPopup(target,config.popup); }
+  function load(){ Promise.all([loadScript(BANNER_URL),loadScript(POPUP_URL)]).then(start).catch(function(e){console.warn("KDS Remote Embed Fehler",e);}); }
+  if(document.readyState === "loading") document.addEventListener("DOMContentLoaded",load); else load();
 })();
