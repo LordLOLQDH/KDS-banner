@@ -8,8 +8,9 @@
   const mode = script.dataset.mode || "both";
   const homeOnly = script.dataset.homeOnly === "true";
   const configUrl = script.dataset.config || "https://lordlolqdh.github.io/KDS-banner/config.json";
+  const popupDelay = Number(script.dataset.popupDelay || 8000);
+  const popupKey = `kds-popup-shown:${customer}`;
 
-  // Optional: prevent the component from rendering on subpages.
   if (homeOnly && window.location.pathname !== "/" && !/\/demo\.html$/.test(window.location.pathname)) return;
 
   const defaults = {
@@ -35,8 +36,8 @@
   function content(c,popup){
     return (popup?'<button class="kds-close" type="button" aria-label="Schließen">×</button>':"")+
       '<div class="kds-brand">Kraus <span>Digital Solutions</span></div><div class="kds-eyebrow">'+escapeHtml(c.eyebrow)+'</div><div class="kds-badge">'+escapeHtml(c.badge)+'</div>'+
-      '<h2 class="kds-title">'+titleHtml(c.title)+'</h2><p class="kds-text">'+escapeHtml(c.text)+'</p>'+
-      '<div class="kds-items"><div class="kds-item"><strong>01 — Neue Websites</strong><small>Von null auf online – modern, schnell & conversion-orientiert.</small></div><div class="kds-item"><strong>02 — Redesign</strong><small>Alt wird neu. Wir ersetzen veraltete Websites durch moderne, die funktionieren.</small></div><div class="kds-item"><strong>03 — Optimierung</strong><small>Schneller, besser, mehr Kunden – systematisch verbessert.</small></div></div>'+
+      '<h2 class="kds-title">'+titleHtml(c.title)+'</h2><p class="kds-text">'+escapeHtml(c.text)+'</p>'+ 
+      '<div class="kds-items"><div class="kds-item"><strong>01 — Neue Websites</strong><small>Von null auf online – modern, schnell & conversion-orientiert.</small></div><div class="kds-item"><strong>02 — Redesign</strong><small>Alt wird neu. Wir ersetzen veraltete Websites durch moderne, die funktionieren.</small></div><div class="kds-item"><strong>03 — Optimierung</strong><small>Schneller, besser, mehr Kunden – systematisch verbessert.</small></div></div>'+ 
       '<a class="kds-button" href="'+escapeHtml(c.link)+'" target="_blank" rel="noopener noreferrer">'+escapeHtml(c.button)+'</a><div class="kds-credit"><strong>Adam Gabriel Kraus</strong><span>Kraus Digital Solutions</span></div>';
   }
 
@@ -48,7 +49,7 @@
   }
 
   function renderPopup(c){
-    if(!c.popup||document.querySelector(".kds-overlay"))return;
+    if(!c.popup||sessionStorage.getItem(popupKey)==="1")return;
     const overlay=document.createElement("div");overlay.className="kds-root kds-overlay";
     overlay.innerHTML='<div class="kds-popup" role="dialog" aria-modal="true" aria-label="Kraus Digital Solutions">'+content(c,true)+'<button class="kds-no-thanks" type="button">Nein danke</button></div>';
     const close=()=>{overlay.remove();document.body.classList.remove("kds-lock")};
@@ -56,6 +57,7 @@
     overlay.querySelector(".kds-no-thanks").addEventListener("click",close);
     overlay.addEventListener("click",e=>{if(e.target===overlay)close()});
     document.body.appendChild(overlay);document.body.classList.add("kds-lock");
+    sessionStorage.setItem(popupKey,"1");
   }
 
   async function start(){
@@ -64,7 +66,10 @@
     try{const r=await fetch(configUrl,{cache:"no-store"});if(r.ok)config={...config,...await r.json()}}catch(_){}
     window.KDSBanner={customer,config};
     if(mode==="banner"||mode==="both")renderBanner(config);
-    if(mode==="popup"||mode==="both")renderPopup(config);
+    if(mode==="popup"||mode==="both"){
+      const alreadyShown=sessionStorage.getItem(popupKey)==="1";
+      if(!alreadyShown) window.setTimeout(()=>renderPopup(config),popupDelay);
+    }
   }
 
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start,{once:true});else start();
