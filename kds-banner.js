@@ -10,8 +10,9 @@
   const configUrl = script.dataset.config || "https://lordlolqdh.github.io/KDS-banner/config.json";
   const popupDelay = Number(script.dataset.popupDelay || 8000);
   const popupKey = `kds-popup-shown:${customer}`;
+  const timerKey = `kds-popup-start:${customer}`;
 
-  if (homeOnly && window.location.pathname !== "/" && !/\/demo\.html$/.test(window.location.pathname)) return;
+  const isHome = window.location.pathname === "/" || /\/demo\.html$/.test(window.location.pathname);
 
   const defaults = {
     eyebrow: "DIGITAL INSIGHTS",
@@ -42,14 +43,14 @@
   }
 
   function renderBanner(c){
-    if(!c.banner||document.querySelector("[data-kds-banner]"))return;
+    if(!isHome||!c.banner||document.querySelector("[data-kds-banner]"))return;
     const host=document.createElement("div");host.className="kds-root";host.dataset.kdsBanner=customer;
     host.innerHTML='<section class="kds-banner" aria-label="Kraus Digital Solutions">'+content(c,false)+"</section>";
     const footer=document.querySelector("footer");if(footer)footer.parentNode.insertBefore(host,footer);else document.body.appendChild(host);
   }
 
   function renderPopup(c){
-    if(!c.popup||sessionStorage.getItem(popupKey)==="1")return;
+    if(!isHome||!c.popup||sessionStorage.getItem(popupKey)==="1")return;
     const overlay=document.createElement("div");overlay.className="kds-root kds-overlay";
     overlay.innerHTML='<div class="kds-popup" role="dialog" aria-modal="true" aria-label="Kraus Digital Solutions">'+content(c,true)+'<button class="kds-no-thanks" type="button">Nein danke</button></div>';
     const close=()=>{overlay.remove();document.body.classList.remove("kds-lock")};
@@ -62,13 +63,25 @@
 
   async function start(){
     const style=document.createElement("style");style.id="kds-banner-style";style.textContent=css;document.head.appendChild(style);
+
+    // One timer for the entire website session, not one timer per page.
+    // sessionStorage survives same-tab navigation and resets when the tab/session is closed.
+    if(!sessionStorage.getItem(timerKey))sessionStorage.setItem(timerKey,String(Date.now()));
+
     let config={...defaults};
     try{const r=await fetch(configUrl,{cache:"no-store"});if(r.ok)config={...config,...await r.json()}}catch(_){}
     window.KDSBanner={customer,config};
+
     if(mode==="banner"||mode==="both")renderBanner(config);
+
     if(mode==="popup"||mode==="both"){
       const alreadyShown=sessionStorage.getItem(popupKey)==="1";
-      if(!alreadyShown) window.setTimeout(()=>renderPopup(config),popupDelay);
+      if(!alreadyShown){
+        const started=Number(sessionStorage.getItem(timerKey));
+        const elapsed=Date.now()-started;
+        const remaining=Math.max(0,popupDelay-elapsed);
+        if(isHome)window.setTimeout(()=>renderPopup(config),remaining);
+      }
     }
   }
 
