@@ -2,9 +2,8 @@
 (function () {
   "use strict";
   var ROOT_ID = "kds-central-root";
-  var BASE = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@main/";
-  var BANNER_URL = BASE + "KdsBanner.js";
-  var POPUP_URL = BASE + "KdsPopup.js";
+  var BANNER_URL = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@5a586f39156acb327610dc0d314684516b7ccdc8/KdsBanner.js";
+  var POPUP_URL = "https://cdn.jsdelivr.net/gh/LordLOLQDH/KDS-banner@042cb097731d5205955eaecf3053a1e846e588fe/KdsPopup.js";
   var config = {
     banner: {
       enabled: true,
@@ -14,13 +13,13 @@
       description: "Sie möchten ebenfalls eine professionelle Website? Für ausgewählte Testkunden bieten wir attraktive Konditionen – im Gegenzug freuen wir uns über eine ehrliche Bewertung unserer Arbeit. Die Anzahl der Plätze ist begrenzt.",
       cta: "Unverbindlich informieren →",
       ctaUrl: "https://kraus-digital-solutions.base44.app/kontakt",
-      services: [["01 — Neue Websites", "Professionelle Websites – modern, schnell und auf eine überzeugende Nutzererfahrung ausgerichtet."], ["02 — Redesign", "Bestehende Websites werden modernisiert, strukturiert und zeitgemäß neu aufgestellt."], ["03 — Optimierung", "Gezielte Verbesserungen für Performance, Nutzerfreundlichkeit und eine professionelle Online-Präsenz."]],
+      services: [["01 — Neue Websites", "Professionelle Websites – modern, klar strukturiert und auf eine überzeugende Nutzererfahrung ausgerichtet."], ["02 — Redesign", "Bestehende Websites werden modernisiert, strukturell überarbeitet und zeitgemäß neu gestaltet."], ["03 — Optimierung", "Gezielte Verbesserungen für Performance, Nutzerfreundlichkeit und eine professionelle Online-Präsenz."]],
       footerName: "Adam Gabriel Kraus",
       footerCompany: "Kraus Digital Solutions"
     },
     popup: {
       enabled: true,
-      delayMs: 8000,
+      delayMs: 3500,
       oncePerSession: false,
       eyebrow: "DIGITAL INSIGHTS",
       badge: "ANGEBOT FÜR TESTKUNDEN",
