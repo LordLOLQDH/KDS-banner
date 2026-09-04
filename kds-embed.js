@@ -9,12 +9,12 @@
     banner: {
       enabled: true,
       eyebrow: "DIGITAL INSIGHTS",
-      badge: "TESTKUNDEN-RABATT",
-      title: "Diese Website wurde von Kraus Digital Solutions gemacht",
-      description: "Du willst auch eine eigene Website? Für unsere ersten Testkunden gibt es einen starken Rabatt – im Gegenzug für eine ehrliche Bewertung. Begrenzte Plätze.",
-      cta: "Testkunden-Rabatt sichern →",
+      badge: "ANGEBOT FÜR TESTKUNDEN",
+      title: "Diese Website wurde von Kraus Digital Solutions erstellt",
+      description: "Sie möchten ebenfalls eine professionelle Website? Für ausgewählte Testkunden bieten wir attraktive Konditionen – im Gegenzug freuen wir uns über eine ehrliche Bewertung unserer Arbeit. Die Anzahl der Plätze ist begrenzt.",
+      cta: "Unverbindlich informieren →",
       ctaUrl: "https://kraus-digital-solutions.base44.app/kontakt",
-      services: [["01 — Neue Websites", "Von null auf online – modern, schnell & conversion-orientiert."], ["02 — Redesign", "Alt wird neu. Wir ersetzen veraltete Websites durch moderne, die funktionieren."], ["03 — Optimierung", "Schneller, besser, mehr Kunden – systematisch verbessert."]],
+      services: [["01 — Neue Websites", "Professionelle Websites – modern, schnell und auf eine überzeugende Nutzererfahrung ausgerichtet."], ["02 — Redesign", "Bestehende Websites werden modernisiert, strukturiert und zeitgemäß neu aufgestellt."], ["03 — Optimierung", "Gezielte Verbesserungen für Performance, Nutzerfreundlichkeit und eine professionelle Online-Präsenz."]],
       footerName: "Adam Gabriel Kraus",
       footerCompany: "Kraus Digital Solutions"
     },
@@ -23,10 +23,10 @@
       delayMs: 8000,
       oncePerSession: false,
       eyebrow: "DIGITAL INSIGHTS",
-      badge: "TESTKUNDEN-RABATT",
-      title: "Du brauchst auch eine Website?",
-      description: "Diese Website wurde von Kraus Digital Solutions gemacht. Für unsere ersten Testkunden gibt es einen starken Rabatt – im Gegenzug für eine ehrliche Bewertung. Begrenzte Plätze.",
-      cta: "Testkunden-Rabatt sichern →",
+      badge: "ANGEBOT FÜR TESTKUNDEN",
+      title: "Sie möchten ebenfalls eine professionelle Website?",
+      description: "Diese Website wurde von Kraus Digital Solutions erstellt. Für ausgewählte Testkunden bieten wir attraktive Konditionen – im Gegenzug freuen wir uns über eine ehrliche Bewertung unserer Arbeit. Die Anzahl der Plätze ist begrenzt.",
+      cta: "Unverbindlich informieren →",
       ctaUrl: "https://kraus-digital-solutions.base44.app/kontakt"
     }
   };
