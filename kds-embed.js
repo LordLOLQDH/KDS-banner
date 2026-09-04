@@ -36,7 +36,33 @@
     document.head.appendChild(style);
   }
   function loadScript(url) { return new Promise(function(resolve,reject){ var s=document.createElement("script"); s.src=url; s.onload=resolve; s.onerror=function(){reject(new Error(url));}; document.head.appendChild(s); }); }
-  function start(){ addStyles(); var target=document.getElementById(ROOT_ID)||document.body.appendChild(document.createElement("div")); target.id=ROOT_ID; target.innerHTML=""; if(window.KdsBanner) window.KdsBanner(target,config.banner); if(window.KdsPopup) window.KdsPopup(target,config.popup); }
+  function placeBannerAsSecondSection(target) {
+    var containers = document.querySelectorAll("main, [role=main]");
+    var container = containers.length ? containers[0] : document.body;
+    var children = Array.prototype.filter.call(container.children, function (el) {
+      return el.id !== ROOT_ID && !el.hasAttribute("data-kds-ignore-position");
+    });
+
+    if (children.length >= 2) {
+      container.insertBefore(target, children[1]);
+    } else if (children.length === 1) {
+      container.appendChild(target);
+    } else {
+      container.appendChild(target);
+    }
+  }
+  function start(){
+    addStyles();
+    var target=document.getElementById(ROOT_ID);
+    if (!target) {
+      target=document.createElement("div");
+      target.id=ROOT_ID;
+    }
+    target.innerHTML="";
+    placeBannerAsSecondSection(target);
+    if(window.KdsBanner) window.KdsBanner(target,config.banner);
+    if(window.KdsPopup) window.KdsPopup(target,config.popup);
+  }
   function load(){ Promise.all([loadScript(BANNER_URL),loadScript(POPUP_URL)]).then(start).catch(function(e){console.warn("KDS Remote Embed Fehler",e);}); }
   if(document.readyState === "loading") document.addEventListener("DOMContentLoaded",load); else load();
 })();
